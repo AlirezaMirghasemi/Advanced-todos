@@ -1,11 +1,11 @@
 const Todos = () => {
   return (
     <section className="vh-100 gradient-custom">
-      <div className="container py-5 h-100">
-        <div className="row d-flex justify-content-center align-items-center h-100">
-          <div className="col col-xl-10">
-            <div className="card">
-              <div className="card-body p-5">
+      <div className="container py-5 h-100 ">
+        <div className="row d-flex justify-content-center align-items-center h-100 ">
+          <div className="col col-xl-10 ">
+            <div className="card ">
+              <div className="card-body p-5 ">
                 <form className="d-flex justify-content-center align-items-center mb-4">
                   <div data-mdb-input-init className="form-outline flex-fill">
                     <input
@@ -19,13 +19,13 @@ const Todos = () => {
                     type="submit"
                     data-mdb-button-init
                     data-mdb-ripple-init
-                    className="btn btn-info ms-2"
+                    className="btn btn-outline-dark ms-2"
                   >
                     Add
                   </button>
                 </form>
 
-                <ul className="nav nav-tabs mb-4 pb-2" id="ex1" role="tablist">
+                <ul className="nav nav-tabs mb-4" id="ex1" role="tablist">
                   <li className="nav-item" role="presentation">
                     <a
                       className="nav-link active"
