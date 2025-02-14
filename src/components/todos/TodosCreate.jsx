@@ -13,7 +13,7 @@ const TodosCreate = () => {
         type="submit"
         data-mdb-button-init
         data-mdb-ripple-init
-        className="btn btn-outline-dark ms-2"
+        className="btn btn-outline-success ms-2"
       >
         Add
       </button>
