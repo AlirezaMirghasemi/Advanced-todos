@@ -38,7 +38,9 @@ const Todos = () => {
     ]);
     e.target.elements.newTodo.value = "";
   };
-
+  const deleteTodo = (todo) => {
+    setAllTasks(allTasks.filter((t) => t.id !== todo.id));
+  };
   return (
     <section className="vh-100 gradient-custom">
       <div className="container py-5 h-100 ">
@@ -51,6 +53,7 @@ const Todos = () => {
                 <TodosTab
                   changeTodoStatus={changeTodoStatus}
                   allTasks={allTasks}
+                  deleteTodo={deleteTodo}
                 />
               </div>
             </div>

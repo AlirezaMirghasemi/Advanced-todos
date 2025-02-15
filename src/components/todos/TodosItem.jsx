@@ -1,7 +1,7 @@
 import TodoDelete from "./TodoDelete";
 import TodoEdit from "./todoEdit";
 
-const TodosItem = ({ todos , changeTodoStatus}) => {
+const TodosItem = ({ todos , changeTodoStatus,deleteTodo}) => {
 
   return todos.map((todo) => (
     <li
@@ -25,7 +25,7 @@ const TodosItem = ({ todos , changeTodoStatus}) => {
       </div>
       <div>
         <TodoEdit/>
-        <TodoDelete/>
+        <TodoDelete todo={todo} deleteTodo={deleteTodo}/>
       </div>
     </li>
   ));

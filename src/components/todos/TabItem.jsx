@@ -1,6 +1,6 @@
 import TodosItem from "./TodosItem";
 
-const TabItem = ({ activeTab,changeTodoStatus,allTasks }) => {
+const TabItem = ({ activeTab,changeTodoStatus,allTasks,deleteTodo }) => {
 
 
   const filteredTasks =
@@ -12,7 +12,7 @@ const TabItem = ({ activeTab,changeTodoStatus,allTasks }) => {
 
   return (
     <ul className="list-group mb-0">
-      <TodosItem todos={filteredTasks} changeTodoStatus={changeTodoStatus} />
+      <TodosItem todos={filteredTasks} changeTodoStatus={changeTodoStatus} deleteTodo={deleteTodo}/>
     </ul>
   );
 };
