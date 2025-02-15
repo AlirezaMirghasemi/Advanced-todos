@@ -12,7 +12,7 @@ const TabItem = ({ activeTab,changeTodoStatus,allTasks,deleteTodo }) => {
 
   return (
     <ul className="list-group mb-0">
-      <TodosItem todos={filteredTasks} changeTodoStatus={changeTodoStatus} deleteTodo={deleteTodo}/>
+      <TodosItem todos={filteredTasks} changeTodoStatus={changeTodoStatus} deleteTodo={deleteTodo} />
     </ul>
   );
 };

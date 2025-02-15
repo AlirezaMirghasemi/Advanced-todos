@@ -1,6 +1,6 @@
 const TodoEdit=()=>{
     return(
-        <button type="button" className="btn btn-outline-warning me-3">
+        <button type="submit" className="btn btn-outline-warning me-3">
           Edit
         </button>
     );
