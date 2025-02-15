@@ -31,7 +31,7 @@ const TodosTab = ({changeTodoStatus,allTasks}) => {
           </button>
         </li>
       </ul>
-      <TabItem activeTab={activeTab} changeTodoStatus={changeTodoStatus} allTasks={allTasks}/>
+      <TabItem activeTab={activeTab} changeTodoStatus={changeTodoStatus} allTasks={allTasks} />
     </>
   );
 };
