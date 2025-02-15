@@ -1,7 +1,8 @@
 import TodoDelete from "./TodoDelete";
 import TodoEdit from "./todoEdit";
 
-const TodosItem = ({ todos }) => {
+const TodosItem = ({ todos , changeTodoStatus}) => {
+
   return todos.map((todo) => (
     <li
       key={todo.id}
@@ -13,10 +14,11 @@ const TodosItem = ({ todos }) => {
           className="form-check-input me-2"
           type="checkbox"
           checked={todo.done}
+          onChange={()=>changeTodoStatus(todo)}
         />
         <input
           type="text"
-          value={todo.done}
+          value={todo.text}
           disabled
           className={`disabled-input ${todo.done ? "done" : ""}`}
         />

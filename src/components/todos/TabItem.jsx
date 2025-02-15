@@ -1,13 +1,7 @@
 import TodosItem from "./TodosItem";
 
-const TabItem = ({ activeTab }) => {
-  const allTasks = [
-    { id: 1, text: "Cras justo odio", done: true },
-    { id: 2, text: "Dapibus ac facilisis in", done: true },
-    { id: 3, text: "Morbi leo risus", done: false },
-    { id: 4, text: "Porta ac consectetur ac", done: false },
-    { id: 5, text: "Vestibulum at eros", done: false },
-  ];
+const TabItem = ({ activeTab,changeTodoStatus,allTasks }) => {
+
 
   const filteredTasks =
     activeTab === "active"
@@ -18,7 +12,7 @@ const TabItem = ({ activeTab }) => {
 
   return (
     <ul className="list-group mb-0">
-      <TodosItem todos={filteredTasks} />
+      <TodosItem todos={filteredTasks} changeTodoStatus={changeTodoStatus} />
     </ul>
   );
 };
