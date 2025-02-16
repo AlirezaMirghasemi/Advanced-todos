@@ -2,20 +2,23 @@ import { useEffect, useState } from "react";
 import TodoDelete from "./TodoDelete";
 import TodoEdit from "./todoEdit";
 
-const TodosItem = ({ todos, changeTodoStatus, deleteTodo,submitEditedTodo }) => {
-    const [todoState,setTodoState]=useState("showMode");
-    const[editedTodoId,setEditedTodoId]=useState(null);
-    const[editedTodo,setEditedTodo]=useState("");
+const TodosItem = ({
+  todos,
+  changeTodoStatus,
+  deleteTodo,
+  submitEditedTodo,
+}) => {
+  const [editedTodoId, setEditedTodoId] = useState(null);
+  const [editedTodo, setEditedTodo] = useState("");
   const setEditModeState = (e, todo) => {
     e.preventDefault();
-    if(editedTodoId === todo.id) {
-        submitEditedTodo(todo, editedTodo);
-        setEditedTodoId(null);
-    }else{
-        setEditedTodoId(todo.id);
+    if (editedTodoId === todo.id) {
+      submitEditedTodo(todo, editedTodo);
+      setEditedTodoId(null);
+    } else {
+      setEditedTodoId(todo.id);
       setEditedTodo(todo.text);
     }
-
   };
   return todos.map((todo) => (
     <li
@@ -39,13 +42,15 @@ const TodosItem = ({ todos, changeTodoStatus, deleteTodo,submitEditedTodo }) => 
             type="text"
             value={editedTodoId === todo.id ? editedTodo : todo.text}
             onChange={(e) => setEditedTodo(e.target.value)}
-            disabled={(editedTodoId==todo.id) ? false : true}
-            className={`flex-grow-1 ${editedTodoId!=todo.id ? "disabled-input" : ""} ${todo.done ? "done" : ""} `}
+            disabled={editedTodoId == todo.id ? false : true}
+            className={`flex-grow-1 ${
+              editedTodoId != todo.id ? "disabled-input" : ""
+            } ${todo.done ? "done" : ""} `}
             name="todoTitle"
           />
           <div className="ms-auto d-flex">
             <TodoEdit todo={todo} />
-            <TodoDelete todo={todo} deleteTodo={deleteTodo} />
+            <TodoDelete todo={todo} deleteTodo={deleteTodo} editedTodoId={editedTodoId}/>
           </div>
         </form>
       </div>
