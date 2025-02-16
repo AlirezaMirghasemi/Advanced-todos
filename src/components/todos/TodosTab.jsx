@@ -1,7 +1,12 @@
 import { useState } from "react";
 import TabItem from "./TabItem";
 
-const TodosTab = ({changeTodoStatus,allTasks,deleteTodo}) => {
+const TodosTab = ({
+  changeTodoStatus,
+  allTasks,
+  deleteTodo,
+  submitEditedTodo,
+}) => {
   const [activeTab, setActiveTab] = useState("all");
   return (
     <>
@@ -31,7 +36,13 @@ const TodosTab = ({changeTodoStatus,allTasks,deleteTodo}) => {
           </button>
         </li>
       </ul>
-      <TabItem activeTab={activeTab} changeTodoStatus={changeTodoStatus} allTasks={allTasks} deleteTodo={deleteTodo} />
+      <TabItem
+        activeTab={activeTab}
+        changeTodoStatus={changeTodoStatus}
+        allTasks={allTasks}
+        deleteTodo={deleteTodo}
+        submitEditedTodo={submitEditedTodo}
+      />
     </>
   );
 };

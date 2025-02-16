@@ -1,4 +1,5 @@
-const TodoEdit=()=>{
+
+const TodoEdit=({todo})=>{
     return(
         <button type="submit" className="btn btn-outline-warning me-3">
           Edit

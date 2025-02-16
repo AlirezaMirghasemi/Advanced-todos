@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodosCreate from "./TodosCreate";
 import TodosTab from "./TodosTab";
 
 const Todos = () => {
+
   const [allTasks, setAllTasks] = useState([
     { id: 1, text: "Cras justo odio", done: true },
     { id: 2, text: "Dapibus ac facilisis in", done: true },
@@ -10,6 +11,7 @@ const Todos = () => {
     { id: 4, text: "Porta ac consectetur ac", done: false },
     { id: 5, text: "Vestibulum at eros", done: false },
   ]);
+
   const changeTodoStatus = (todo) => {
     setAllTasks(
       allTasks.map((t) => (t.id === todo.id ? { ...t, done: !t.done } : t))
@@ -41,6 +43,20 @@ const Todos = () => {
   const deleteTodo = (todo) => {
     setAllTasks(allTasks.filter((t) => t.id !== todo.id));
   };
+  const submitEditedTodo = (todo, newValue) => {
+    if (newValue.trim() === "") {
+      setError([{ errorText: "Please Enter Task Title!!!" }]);
+      return;
+    }
+    setError([]);
+    console.log(newValue);
+    setAllTasks(
+      allTasks.map((t) =>
+        t.id === todo.id ? { ...t, text: newValue.trim() } : t
+      )
+    );
+    console.log(allTasks);
+  };
   return (
     <section className="vh-100 gradient-custom">
       <div className="container py-5 h-100 ">
@@ -54,6 +70,7 @@ const Todos = () => {
                   changeTodoStatus={changeTodoStatus}
                   allTasks={allTasks}
                   deleteTodo={deleteTodo}
+                  submitEditedTodo={submitEditedTodo}
                 />
               </div>
             </div>

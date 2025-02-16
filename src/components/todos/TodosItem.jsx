@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodoDelete from "./TodoDelete";
 import TodoEdit from "./todoEdit";
 
-const TodosItem = ({ todos, changeTodoStatus, deleteTodo }) => {
+const TodosItem = ({ todos, changeTodoStatus, deleteTodo,submitEditedTodo }) => {
+    const [todoState,setTodoState]=useState("showMode");
+    const[editedTodoId,setEditedTodoId]=useState(null);
+    const[editedTodo,setEditedTodo]=useState("");
+  const setEditModeState = (e, todo) => {
+    e.preventDefault();
+    if(editedTodoId === todo.id) {
+        submitEditedTodo(todo, editedTodo);
+        setEditedTodoId(null);
+    }else{
+        setEditedTodoId(todo.id);
+      setEditedTodo(todo.text);
+    }
 
+  };
   return todos.map((todo) => (
     <li
       key={todo.id}
@@ -14,6 +27,7 @@ const TodosItem = ({ todos, changeTodoStatus, deleteTodo }) => {
         <form
           action=""
           className="d-flex w-100"
+          onSubmit={(e) => setEditModeState(e, todo)}
         >
           <input
             className="form-check-input me-2"
@@ -23,13 +37,14 @@ const TodosItem = ({ todos, changeTodoStatus, deleteTodo }) => {
           />
           <input
             type="text"
-            defaultValue={todo.text}
-            disabled
-            className={`flex-grow-1 disabled-input ${todo.done ? "done" : ""} `}
+            value={editedTodoId === todo.id ? editedTodo : todo.text}
+            onChange={(e) => setEditedTodo(e.target.value)}
+            disabled={(editedTodoId==todo.id) ? false : true}
+            className={`flex-grow-1 ${editedTodoId!=todo.id ? "disabled-input" : ""} ${todo.done ? "done" : ""} `}
             name="todoTitle"
           />
           <div className="ms-auto d-flex">
-           <TodoEdit/>
+            <TodoEdit todo={todo} />
             <TodoDelete todo={todo} deleteTodo={deleteTodo} />
           </div>
         </form>
