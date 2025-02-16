@@ -3,14 +3,14 @@ import TodosCreate from "./TodosCreate";
 import TodosTab from "./TodosTab";
 
 const Todos = () => {
-
-  const [allTasks, setAllTasks] = useState([
-    { id: 1, text: "Cras justo odio", done: true },
-    { id: 2, text: "Dapibus ac facilisis in", done: true },
-    { id: 3, text: "Morbi leo risus", done: false },
-    { id: 4, text: "Porta ac consectetur ac", done: false },
-    { id: 5, text: "Vestibulum at eros", done: false },
-  ]);
+  const [allTasks, setAllTasks] = useState(
+    localStorage.getItem("todos")
+      ? JSON.parse(localStorage.getItem("todos"))
+      : []
+  );
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(allTasks));
+  }, [allTasks]);
 
   const changeTodoStatus = (todo) => {
     setAllTasks(
@@ -49,7 +49,6 @@ const Todos = () => {
       return;
     }
     setError([]);
-    console.log(newValue);
     setAllTasks(
       allTasks.map((t) =>
         t.id === todo.id ? { ...t, text: newValue.trim() } : t
