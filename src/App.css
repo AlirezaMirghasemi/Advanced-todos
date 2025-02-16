@@ -1,13 +1,17 @@
 @import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");
 @import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 
-.vh-100{background-color:  #272829;}
-.disabled-input{
-    border: none;
+.vh-100 {
+  background-color: #272829;
+}
+.disabled-input {
+  border: none;
   display: inline;
   font-family: inherit;
   font-size: inherit;
   padding: none;
   width: auto;
 }
-.disabled-input.done{text-decoration: line-through;}
+.disabled-input.done {
+  text-decoration: line-through;
+}

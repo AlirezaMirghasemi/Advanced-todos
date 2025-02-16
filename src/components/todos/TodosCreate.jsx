@@ -1,4 +1,4 @@
-const TodosCreate = ({ createNewTodo, errors ,isEditing}) => {
+const TodosCreate = ({ createNewTodo, errors, isEditing }) => {
   return (
     <>
       <form

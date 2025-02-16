@@ -6,7 +6,7 @@ const TodosTab = ({
   allTasks,
   deleteTodo,
   submitEditedTodo,
-  setIsEditing
+  setIsEditing,
 }) => {
   const [activeTab, setActiveTab] = useState("all");
   return (

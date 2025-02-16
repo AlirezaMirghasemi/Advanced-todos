@@ -3,7 +3,7 @@ import TodosCreate from "./TodosCreate";
 import TodosTab from "./TodosTab";
 
 const Todos = () => {
-    const[isEditing,setIsEditing]=useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [allTasks, setAllTasks] = useState(
     localStorage.getItem("todos")
       ? JSON.parse(localStorage.getItem("todos"))
@@ -55,7 +55,6 @@ const Todos = () => {
         t.id === todo.id ? { ...t, text: newValue.trim() } : t
       )
     );
-    console.log(allTasks);
   };
   return (
     <section className="vh-100 gradient-custom">
@@ -64,8 +63,11 @@ const Todos = () => {
           <div className="col col-xl-10 ">
             <div className="card ">
               <div className="card-body p-5 ">
-                <TodosCreate createNewTodo={createNewTodo} errors={error} isEditing={isEditing}/>
-                {console.log(error)}
+                <TodosCreate
+                  createNewTodo={createNewTodo}
+                  errors={error}
+                  isEditing={isEditing}
+                />
                 <TodosTab
                   changeTodoStatus={changeTodoStatus}
                   allTasks={allTasks}

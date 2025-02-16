@@ -7,10 +7,10 @@ const TodosRouter = createBrowserRouter([
     path: "/",
     element: <MainLayout />,
     children: [
-        {
-            index:true,
-            element:<Todos/>
-        }
+      {
+        index: true,
+        element: <Todos />,
+      },
     ],
   },
 ]);

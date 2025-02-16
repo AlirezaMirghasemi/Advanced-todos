@@ -1,8 +1,13 @@
 import TodosItem from "./TodosItem";
 
-const TabItem = ({ activeTab,changeTodoStatus,allTasks,deleteTodo ,submitEditedTodo,setIsEditing}) => {
-
-
+const TabItem = ({
+  activeTab,
+  changeTodoStatus,
+  allTasks,
+  deleteTodo,
+  submitEditedTodo,
+  setIsEditing,
+}) => {
   const filteredTasks =
     activeTab === "active"
       ? allTasks.filter((task) => !task.done)
@@ -12,7 +17,13 @@ const TabItem = ({ activeTab,changeTodoStatus,allTasks,deleteTodo ,submitEditedT
 
   return (
     <ul className="list-group mb-0">
-      <TodosItem todos={filteredTasks} changeTodoStatus={changeTodoStatus} deleteTodo={deleteTodo} submitEditedTodo={submitEditedTodo} setIsEditing={setIsEditing}/>
+      <TodosItem
+        todos={filteredTasks}
+        changeTodoStatus={changeTodoStatus}
+        deleteTodo={deleteTodo}
+        submitEditedTodo={submitEditedTodo}
+        setIsEditing={setIsEditing}
+      />
     </ul>
   );
 };

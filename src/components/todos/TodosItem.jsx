@@ -7,7 +7,7 @@ const TodosItem = ({
   changeTodoStatus,
   deleteTodo,
   submitEditedTodo,
-  setIsEditing
+  setIsEditing,
 }) => {
   const [editedTodoId, setEditedTodoId] = useState(null);
   const [editedTodo, setEditedTodo] = useState("");
@@ -53,7 +53,11 @@ const TodosItem = ({
           />
           <div className="ms-auto d-flex">
             <TodoEdit todo={todo} />
-            <TodoDelete todo={todo} deleteTodo={deleteTodo} editedTodoId={editedTodoId}/>
+            <TodoDelete
+              todo={todo}
+              deleteTodo={deleteTodo}
+              editedTodoId={editedTodoId}
+            />
           </div>
         </form>
       </div>
