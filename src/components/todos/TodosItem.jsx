@@ -7,6 +7,7 @@ const TodosItem = ({
   changeTodoStatus,
   deleteTodo,
   submitEditedTodo,
+  setIsEditing
 }) => {
   const [editedTodoId, setEditedTodoId] = useState(null);
   const [editedTodo, setEditedTodo] = useState("");
@@ -14,10 +15,12 @@ const TodosItem = ({
     e.preventDefault();
     if (editedTodoId === todo.id) {
       submitEditedTodo(todo, editedTodo);
+      setIsEditing(false);
       setEditedTodoId(null);
     } else {
       setEditedTodoId(todo.id);
       setEditedTodo(todo.text);
+      setIsEditing(true);
     }
   };
   return todos.map((todo) => (

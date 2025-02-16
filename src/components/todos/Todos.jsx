@@ -3,6 +3,7 @@ import TodosCreate from "./TodosCreate";
 import TodosTab from "./TodosTab";
 
 const Todos = () => {
+    const[isEditing,setIsEditing]=useState(false);
   const [allTasks, setAllTasks] = useState(
     localStorage.getItem("todos")
       ? JSON.parse(localStorage.getItem("todos"))
@@ -63,13 +64,14 @@ const Todos = () => {
           <div className="col col-xl-10 ">
             <div className="card ">
               <div className="card-body p-5 ">
-                <TodosCreate createNewTodo={createNewTodo} errors={error} />
+                <TodosCreate createNewTodo={createNewTodo} errors={error} isEditing={isEditing}/>
                 {console.log(error)}
                 <TodosTab
                   changeTodoStatus={changeTodoStatus}
                   allTasks={allTasks}
                   deleteTodo={deleteTodo}
                   submitEditedTodo={submitEditedTodo}
+                  setIsEditing={setIsEditing}
                 />
               </div>
             </div>

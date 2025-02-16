@@ -6,6 +6,7 @@ const TodosTab = ({
   allTasks,
   deleteTodo,
   submitEditedTodo,
+  setIsEditing
 }) => {
   const [activeTab, setActiveTab] = useState("all");
   return (
@@ -42,6 +43,7 @@ const TodosTab = ({
         allTasks={allTasks}
         deleteTodo={deleteTodo}
         submitEditedTodo={submitEditedTodo}
+        setIsEditing={setIsEditing}
       />
     </>
   );

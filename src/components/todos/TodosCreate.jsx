@@ -1,4 +1,4 @@
-const TodosCreate = ({ createNewTodo, errors }) => {
+const TodosCreate = ({ createNewTodo, errors ,isEditing}) => {
   return (
     <>
       <form
@@ -11,6 +11,7 @@ const TodosCreate = ({ createNewTodo, errors }) => {
             name="newTodo"
             className="form-control"
             placeholder="New task..."
+            disabled={isEditing}
           />
         </div>
 
@@ -19,6 +20,7 @@ const TodosCreate = ({ createNewTodo, errors }) => {
           data-mdb-button-init
           data-mdb-ripple-init
           className="btn btn-outline-success ms-2"
+          disabled={isEditing}
         >
           Add
         </button>

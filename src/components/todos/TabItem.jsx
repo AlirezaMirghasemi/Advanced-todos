@@ -1,6 +1,6 @@
 import TodosItem from "./TodosItem";
 
-const TabItem = ({ activeTab,changeTodoStatus,allTasks,deleteTodo ,submitEditedTodo}) => {
+const TabItem = ({ activeTab,changeTodoStatus,allTasks,deleteTodo ,submitEditedTodo,setIsEditing}) => {
 
 
   const filteredTasks =
@@ -12,7 +12,7 @@ const TabItem = ({ activeTab,changeTodoStatus,allTasks,deleteTodo ,submitEditedT
 
   return (
     <ul className="list-group mb-0">
-      <TodosItem todos={filteredTasks} changeTodoStatus={changeTodoStatus} deleteTodo={deleteTodo} submitEditedTodo={submitEditedTodo}/>
+      <TodosItem todos={filteredTasks} changeTodoStatus={changeTodoStatus} deleteTodo={deleteTodo} submitEditedTodo={submitEditedTodo} setIsEditing={setIsEditing}/>
     </ul>
   );
 };
