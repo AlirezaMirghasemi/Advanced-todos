@@ -3,17 +3,17 @@ import TodosItem from "./TodosItem";
 const TabItem = ({
   activeTab,
   changeTodoStatus,
-  allTasks,
+  todos,
   deleteTodo,
   submitEditedTodo,
   setIsEditing,
 }) => {
   const filteredTasks =
     activeTab === "active"
-      ? allTasks.filter((task) => !task.done)
+      ? todos.filter((task) => !task.done)
       : activeTab === "complete"
-      ? allTasks.filter((task) => task.done)
-      : allTasks;
+      ? todos.filter((task) => task.done)
+      : todos;
 
   return (
     <ul className="list-group mb-0">

@@ -3,7 +3,7 @@ import TabItem from "./TabItem";
 
 const TodosTab = ({
   changeTodoStatus,
-  allTasks,
+  todos,
   deleteTodo,
   submitEditedTodo,
   setIsEditing,
@@ -40,7 +40,7 @@ const TodosTab = ({
       <TabItem
         activeTab={activeTab}
         changeTodoStatus={changeTodoStatus}
-        allTasks={allTasks}
+        todos={todos}
         deleteTodo={deleteTodo}
         submitEditedTodo={submitEditedTodo}
         setIsEditing={setIsEditing}

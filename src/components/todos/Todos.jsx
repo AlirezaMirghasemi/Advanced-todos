@@ -4,18 +4,21 @@ import TodosTab from "./TodosTab";
 
 const Todos = () => {
   const [isEditing, setIsEditing] = useState(false);
-  const [allTasks, setAllTasks] = useState(
+
+
+
+
+  const [todos, setTodos] = useState(
     localStorage.getItem("todos")
       ? JSON.parse(localStorage.getItem("todos"))
       : []
   );
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(allTasks));
-  }, [allTasks]);
-
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
   const changeTodoStatus = (todo) => {
-    setAllTasks(
-      allTasks.map((t) => (t.id === todo.id ? { ...t, done: !t.done } : t))
+    setTodos(
+      todos.map((t) => (t.id === todo.id ? { ...t, done: !t.done } : t))
     );
   };
   const [error, setError] = useState([]);
@@ -27,14 +30,13 @@ const Todos = () => {
       setError([{ errorText: "Please Enter Task Title!!!" }]);
       return;
     }
-
-    setAllTasks([
-      ...allTasks,
+    setTodos([
+      ...todos,
       {
         id:
-          allTasks.length === 0
+          todos.length === 0
             ? 1
-            : Math.max(...allTasks.map((t) => t.id)) + 1,
+            : Math.max(...todos.map((t) => t.id)) + 1,
         text: newTodoText,
         done: false,
       },
@@ -42,7 +44,7 @@ const Todos = () => {
     e.target.elements.newTodo.value = "";
   };
   const deleteTodo = (todo) => {
-    setAllTasks(allTasks.filter((t) => t.id !== todo.id));
+    setTodos(todos.filter((t) => t.id !== todo.id));
   };
   const submitEditedTodo = (todo, newValue) => {
     if (newValue.trim() === "") {
@@ -50,8 +52,8 @@ const Todos = () => {
       return;
     }
     setError([]);
-    setAllTasks(
-      allTasks.map((t) =>
+    setTodos(
+      todos.map((t) =>
         t.id === todo.id ? { ...t, text: newValue.trim() } : t
       )
     );
@@ -70,7 +72,7 @@ const Todos = () => {
                 />
                 <TodosTab
                   changeTodoStatus={changeTodoStatus}
-                  allTasks={allTasks}
+                  todos={todos}
                   deleteTodo={deleteTodo}
                   submitEditedTodo={submitEditedTodo}
                   setIsEditing={setIsEditing}
