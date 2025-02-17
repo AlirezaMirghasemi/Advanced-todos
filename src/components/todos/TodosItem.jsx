@@ -40,6 +40,7 @@ const TodosItem = ({
             type="checkbox"
             checked={todo.done}
             onChange={() => changeTodoStatus(todo)}
+            disabled={editedTodoId == todo.id ? true : false}
           />
           <input
             type="text"

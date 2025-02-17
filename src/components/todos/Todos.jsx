@@ -1,25 +1,54 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import TodosCreate from "./TodosCreate";
 import TodosTab from "./TodosTab";
 
 const Todos = () => {
   const [isEditing, setIsEditing] = useState(false);
 
-
-
-
-  const [todos, setTodos] = useState(
+  const [todos, todosDispatcher] = useReducer(
+    (todos, action) => {
+      switch (action.type) {
+        case "changeTodoStatus":
+          return todos.map((t) =>
+            t.id === action.payload.todo.id ? { ...t, done: !t.done } : t
+          );
+        case "newTodo":
+          return [
+            ...todos,
+            {
+              id:
+                todos.length === 0
+                  ? 1
+                  : Math.max(...todos.map((t) => t.id)) + 1,
+              text: action.payload.newTodoText,
+              done: false,
+            },
+          ];
+        case "deleteTodo":
+          return todos.filter((t) => t.id !== action.payload.todo.id);
+        case "editTodo":
+          return todos.map((t) =>
+            t.id === action.payload.todo.id
+              ? { ...t, text: action.payload.newValue.trim() }
+              : t
+          );
+        default:
+          return todos;
+      }
+    },
     localStorage.getItem("todos")
       ? JSON.parse(localStorage.getItem("todos"))
       : []
   );
+
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
   const changeTodoStatus = (todo) => {
-    setTodos(
-      todos.map((t) => (t.id === todo.id ? { ...t, done: !t.done } : t))
-    );
+    todosDispatcher({
+      type: "changeTodoStatus",
+      payload: { todo },
+    });
   };
   const [error, setError] = useState([]);
   const createNewTodo = (e) => {
@@ -30,21 +59,19 @@ const Todos = () => {
       setError([{ errorText: "Please Enter Task Title!!!" }]);
       return;
     }
-    setTodos([
-      ...todos,
-      {
-        id:
-          todos.length === 0
-            ? 1
-            : Math.max(...todos.map((t) => t.id)) + 1,
-        text: newTodoText,
-        done: false,
-      },
-    ]);
+    todosDispatcher({
+      type: "newTodo",
+      payload: { newTodoText },
+    });
     e.target.elements.newTodo.value = "";
   };
   const deleteTodo = (todo) => {
-    setTodos(todos.filter((t) => t.id !== todo.id));
+    todosDispatcher({
+      type: "deleteTodo",
+      payload: {
+        todo,
+      },
+    });
   };
   const submitEditedTodo = (todo, newValue) => {
     if (newValue.trim() === "") {
@@ -52,11 +79,13 @@ const Todos = () => {
       return;
     }
     setError([]);
-    setTodos(
-      todos.map((t) =>
-        t.id === todo.id ? { ...t, text: newValue.trim() } : t
-      )
-    );
+    todosDispatcher({
+      type: "editTodo",
+      payload: {
+        todo,
+        newValue,
+      },
+    });
   };
   return (
     <section className="vh-100 gradient-custom">
