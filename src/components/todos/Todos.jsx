@@ -1,26 +1,19 @@
 import { useEffect, useReducer, useState } from "react";
 import TodosCreate from "./TodosCreate";
 import TodosTab from "./TodosTab";
-import todosReducer from "../../reducers/todoReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { editTodo, newTodo, toggleTodo ,removeTodo} from "../../reducers/todoSlice";
 
 const Todos = () => {
+    const dispatch =useDispatch();
+    const todos = useSelector(state=>state.todos);
+
   const [isEditing, setIsEditing] = useState(false);
-
-  const [todos, todosDispatcher] = useReducer(
-    todosReducer,
-    localStorage.getItem("todos")
-      ? JSON.parse(localStorage.getItem("todos"))
-      : []
-  );
-
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
   const changeTodoStatus = (todo) => {
-    todosDispatcher({
-      type: "changeTodoStatus",
-      payload: { todo },
-    });
+    dispatch(toggleTodo(todo.id));
   };
   const [error, setError] = useState([]);
   const createNewTodo = (e) => {
@@ -31,19 +24,12 @@ const Todos = () => {
       setError([{ errorText: "Please Enter Task Title!!!" }]);
       return;
     }
-    todosDispatcher({
-      type: "newTodo",
-      payload: { newTodoText },
-    });
+
+    dispatch(newTodo(newTodoText));
     e.target.elements.newTodo.value = "";
   };
   const deleteTodo = (todo) => {
-    todosDispatcher({
-      type: "deleteTodo",
-      payload: {
-        todo,
-      },
-    });
+    dispatch(removeTodo(todo));
   };
   const submitEditedTodo = (todo, newValue) => {
     if (newValue.trim() === "") {
@@ -51,13 +37,7 @@ const Todos = () => {
       return;
     }
     setError([]);
-    todosDispatcher({
-      type: "editTodo",
-      payload: {
-        todo,
-        newValue,
-      },
-    });
+    dispatch(editTodo({id:todo.id,newValue}))
   };
   return (
     <section className="vh-100 gradient-custom">
