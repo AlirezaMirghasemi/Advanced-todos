@@ -1,16 +1,22 @@
 import { useState } from "react";
 import TodoDelete from "./TodoDelete";
 import TodoEdit from "./todoEdit";
+import { useDispatch } from "react-redux";
+import { toggleTodo } from "../../reducers/todoSlice";
 
 const TodosItem = ({
   todos,
-  changeTodoStatus,
-  deleteTodo,
   submitEditedTodo,
   setIsEditing,
 }) => {
   const [editedTodoId, setEditedTodoId] = useState(null);
   const [editedTodo, setEditedTodo] = useState("");
+  const dispatch =useDispatch();
+
+
+  const changeTodoStatus = (todo) => {
+    dispatch(toggleTodo(todo.id));
+  };
   const setEditModeState = (e, todo) => {
     e.preventDefault();
     if (editedTodoId === todo.id) {
@@ -56,7 +62,6 @@ const TodosItem = ({
             <TodoEdit todo={todo} />
             <TodoDelete
               todo={todo}
-              deleteTodo={deleteTodo}
               editedTodoId={editedTodoId}
             />
           </div>

@@ -2,11 +2,10 @@ import { useState } from "react";
 import TabItem from "./TabItem";
 
 const TodosTab = ({
-  changeTodoStatus,
   todos,
-  deleteTodo,
   submitEditedTodo,
   setIsEditing,
+  createNewTodo
 }) => {
   const [activeTab, setActiveTab] = useState("all");
   return (
@@ -39,11 +38,10 @@ const TodosTab = ({
       </ul>
       <TabItem
         activeTab={activeTab}
-        changeTodoStatus={changeTodoStatus}
         todos={todos}
-        deleteTodo={deleteTodo}
         submitEditedTodo={submitEditedTodo}
         setIsEditing={setIsEditing}
+        createNewTodo={createNewTodo}
       />
     </>
   );

@@ -7,6 +7,7 @@ const TabItem = ({
   deleteTodo,
   submitEditedTodo,
   setIsEditing,
+  createNewTodo,
 }) => {
   const filteredTasks =
     activeTab === "active"
@@ -23,6 +24,7 @@ const TabItem = ({
         deleteTodo={deleteTodo}
         submitEditedTodo={submitEditedTodo}
         setIsEditing={setIsEditing}
+        createNewTodo={createNewTodo}
       />
     </ul>
   );

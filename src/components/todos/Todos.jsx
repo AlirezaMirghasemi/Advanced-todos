@@ -28,9 +28,7 @@ const Todos = () => {
     dispatch(newTodo(newTodoText));
     e.target.elements.newTodo.value = "";
   };
-  const deleteTodo = (todo) => {
-    dispatch(removeTodo(todo));
-  };
+
   const submitEditedTodo = (todo, newValue) => {
     if (newValue.trim() === "") {
       setError([{ errorText: "Please Enter Task Title!!!" }]);
@@ -54,9 +52,9 @@ const Todos = () => {
                 <TodosTab
                   changeTodoStatus={changeTodoStatus}
                   todos={todos}
-                  deleteTodo={deleteTodo}
                   submitEditedTodo={submitEditedTodo}
                   setIsEditing={setIsEditing}
+                  createNewTodo={createNewTodo}
                 />
               </div>
             </div>
